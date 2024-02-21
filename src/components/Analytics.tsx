@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 export const Analytics = () => {
   return (
     <Tabs className="flex flex-col flex-1" defaultValue="information">
-      <TabsList>
+      <TabsList className="bg-transparent flex justify-start">
         <TabsTrigger value="information">Information</TabsTrigger>
         <TabsTrigger value="code">Improved code</TabsTrigger>
       </TabsList>

@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
+import { SiteImage } from "../components/SiteImage";
 
 export default function Home() {
   return (
@@ -27,10 +28,7 @@ export default function Home() {
         <div className="flex w-full gap-2 p-2 h-full mt-3">
           <Analytics />
           <div className="flex flex-col p-2 w-[300px] border rounded-lg">
-            <h4>example.com</h4>
-            <div>
-              <Skeleton className="w-full bg-muted" />
-            </div>
+            <SiteImage />
           </div>
         </div>
       </main>

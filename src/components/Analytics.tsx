@@ -1,9 +1,14 @@
 "use client";
 
+import React from "react";
 import { Skeleton } from "./ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
-export const Analytics = () => {
+type AnalyticsProps = {
+  loading?: boolean;
+};
+
+export const Analytics: React.FC<AnalyticsProps> = ({ loading = true }) => {
   return (
     <Tabs className="flex flex-col flex-1" defaultValue="information">
       <TabsList className="bg-transparent flex justify-start">

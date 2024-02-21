@@ -2,16 +2,15 @@
 
 import Image from "next/image";
 import React from "react";
+import { Skeleton } from "./ui/skeleton";
 
 interface SiteImageProps {
   children?: React.ReactNode;
+  loading?: boolean;
 }
 
-export const SiteImage: React.FC<SiteImageProps> = () => {
+export const SiteImage: React.FC<SiteImageProps> = ({ loading = true }) => {
   return (
-    <div>
-      <h4 className="text-muted-foreground">example.com</h4>
-      <Image src={``} alt="site-image" />
-    </div>
+    <div>{loading ? <Skeleton /> : <Image src={``} alt="site-image" />}</div>
   );
 };

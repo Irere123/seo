@@ -5,13 +5,19 @@ import { Analytics } from "./Analytics";
 import { SiteImage } from "./SiteImage";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { useQuery } from "react-query";
+import useSiteStore from "@/stores/useSiteStore";
+import { useMutation } from "react-query";
 
 const getSEOInfo = async (siteUrl: string) => {
-  const resp = await fetch("https://seo-api.replit.app/analyze", {
+  const resp = fetch("https://seo-api.replit.app/seo-improve-code", {
     method: "POST",
     body: JSON.stringify({ link: siteUrl }),
-  });
+    mode: "no-cors",
+  })
+    .then((data) => data)
+    .catch((err) => console.log(err));
+
+  return resp;
 };
 
 interface MainContentProps {
@@ -20,11 +26,16 @@ interface MainContentProps {
 
 export const MainContent: React.FC<MainContentProps> = () => {
   const [siteUrl, setSiteUrl] = useState("");
-  const { data, isLoading, error } = useQuery(["getSEOInfo"], () =>
-    getSEOInfo(siteUrl)
+  const { data, isLoading, mutateAsync } = useMutation(
+    ["getSEOInfo"],
+    getSEOInfo
   );
 
-  const handleCheck = () => {};
+  const handleCheck = async () => {
+    const site: { url: string } = useSiteStore.getState() as any;
+    setSiteUrl(site.url);
+    await mutateAsync(site.url);
+  };
 
   return (
     <>
@@ -39,7 +50,7 @@ export const MainContent: React.FC<MainContentProps> = () => {
         </div>
         <div className="mx-auto flex gap-2 sm:flex  items-center w-full max-w-xl">
           <Input
-            onChange={(e) => setSiteUrl(e.target.value)}
+            onChange={(e) => useSiteStore.setState({ url: e.target.value })}
             name="sitename"
             placeholder="https://example.com"
           />
@@ -47,10 +58,10 @@ export const MainContent: React.FC<MainContentProps> = () => {
         </div>
       </div>
       <div className="flex w-full gap-2 p-2 h-full mt-3">
-        <Analytics loading={isLoading} />
+        <Analytics />
         <div className="flex flex-col p-2 w-[300px] border rounded-lg">
           <h4></h4>
-          <SiteImage loading={isLoading} />
+          <SiteImage url={siteUrl} />
         </div>
       </div>
     </>

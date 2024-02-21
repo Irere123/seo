@@ -7,10 +7,20 @@ import { Skeleton } from "./ui/skeleton";
 interface SiteImageProps {
   children?: React.ReactNode;
   loading?: boolean;
+  url: string;
 }
 
-export const SiteImage: React.FC<SiteImageProps> = ({ loading = true }) => {
+export const SiteImage: React.FC<SiteImageProps> = ({
+  loading = true,
+  url,
+}) => {
   return (
-    <div>{loading ? <Skeleton /> : <Image src={``} alt="site-image" />}</div>
+    <>
+      {loading ? (
+        <Skeleton className="w-full h-full bg-muted" />
+      ) : (
+        <Image src={``} alt="site-image" />
+      )}
+    </>
   );
 };

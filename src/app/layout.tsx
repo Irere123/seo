@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SEO API",
+  title: "SEORank - Analyzer",
   description: "Analyze the SEO of your sites",
 };
 

@@ -1,4 +1,5 @@
-import { PenToolIcon } from "lucide-react";
+"use client";
+
 import Icon from "./Icon";
 
 export const Footer = () => {
@@ -10,13 +11,28 @@ export const Footer = () => {
           Check the seo analytics for your site
         </p>
         <div className="flex gap-2">
-          <span className="border rounded-md p-2">
+          <span
+            className="border rounded-md p-2"
+            onClick={() => {
+              window.location.href = "https://twich.com";
+            }}
+          >
             <Icon name="twitch" width={16} height={16} />
           </span>
-          <span className="border rounded-md p-2">
+          <span
+            onClick={() => {
+              window.location.href = "https://twitter.com";
+            }}
+            className="border rounded-md p-2"
+          >
             <Icon name="twitter" width={16} height={16} />
           </span>
-          <span className="border rounded-md p-2">
+          <span
+            onClick={() => {
+              window.location.href = "https://linkedin.com";
+            }}
+            className="border rounded-md p-2"
+          >
             <Icon name="linkedin" width={16} height={16} />
           </span>
         </div>

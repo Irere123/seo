@@ -12,7 +12,6 @@ const getSEOInfo = async (siteUrl: string) => {
   const resp = fetch("https://seo-api.replit.app/seo-improve-code", {
     method: "POST",
     body: JSON.stringify({ link: siteUrl }),
-    mode: "no-cors",
   })
     .then((data) => data)
     .catch((err) => console.log(err));
